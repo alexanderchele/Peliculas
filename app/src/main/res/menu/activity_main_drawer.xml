@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_peliculas"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Películas" />
+        <item
+            android:id="@+id/nav_productores"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Productores" />
+        <item
+            android:id="@+id/nav_horarios"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Horarios" />
+        <item
+            android:id="@+id/nav_salas"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Salas" />
+        <item
+            android:id="@+id/nav_elenco"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Elenco" />
+            />
+
+        <item
+            android:id="@+id/nav_chino"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Chino" />
+        />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>
