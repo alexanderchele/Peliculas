@@ -7,7 +7,7 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Películas" />
         <item
-            android:id="@+id/nav_productores"
+            android:id="@+id/nav_directores"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Productores" />
         <item
