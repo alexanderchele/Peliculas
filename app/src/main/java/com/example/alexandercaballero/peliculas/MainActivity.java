@@ -366,6 +366,50 @@ public void verTrailer(View view){
         );
         MySingleton.getInstance(mContext).addToRequestQueue(jor);
     }
+
+    ///obteniendo cartelera
+    private void getCartelera(String url) {
+        final Context context=this;
+        JsonObjectRequest jor=new JsonObjectRequest(
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Logger.getAnonymousLogger().log(Level.INFO,response.toString());
+                        try {
+                            JSONArray loans=response.getJSONArray("cartelera");
+
+                            ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
+                            for(int i=0;i<loans.length();i++)
+                            {
+                                dataSourse.add(loans.getJSONObject(i));
+
+                            }
+                            CeldaAdaptadorCartelera adapter=new CeldaAdaptadorCartelera(context,0,dataSourse);
+                            ((ListView)findViewById(R.id.lista1)).setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Nota: ponerse a llorar
+                        Logger.getAnonymousLogger().log(Level.SEVERE,"Error Fataliti");
+
+
+                    }
+                }
+        );
+        MySingleton.getInstance(mContext).addToRequestQueue(jor);
+    }
 }
 
 

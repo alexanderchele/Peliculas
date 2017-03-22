@@ -18,12 +18,12 @@ import java.util.List;
  * Created by Alexander Caballero on 16/2/2017.
  */
 
-public class CeldaAdaptador extends ArrayAdapter<JSONObject> {
+public class CeldaAdaptadorCartelera extends ArrayAdapter<JSONObject> {
 
-    public CeldaAdaptador (Context context, int textViewResourseId){
+    public CeldaAdaptadorCartelera(Context context, int textViewResourseId){
         super(context, textViewResourseId);
     }
-    public CeldaAdaptador(Context context, int resourse, List<JSONObject> items){
+    public CeldaAdaptadorCartelera(Context context, int resourse, List<JSONObject> items){
         super(context,resourse,items);
     }
     @Override
@@ -33,23 +33,28 @@ public class CeldaAdaptador extends ArrayAdapter<JSONObject> {
         if (celda==null)
         {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            celda= layoutInflater.inflate(R.layout.celda_adaptador,null);
+            celda= layoutInflater.inflate(R.layout.celda_adaptador_cartelera,null);
         }
         //Video video;
 
 
-        TextView nombre=(TextView) celda.findViewById(R.id.nombre);
-        TextView descripcion=(TextView) celda.findViewById(R.id.descripcion);
-        TextView dir=(TextView) celda.findViewById(R.id.status);
+        TextView cine=(TextView) celda.findViewById(R.id.cine);
+        TextView pelicula=(TextView) celda.findViewById(R.id.nombrePeliculaCartelera);
+        TextView fecha=(TextView) celda.findViewById(R.id.fecha);
+        TextView hora=(TextView) celda.findViewById(R.id.hora);
 
-        NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagen);
+        NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagenPeliculaCartelera);
 
         JSONObject elemento=this.getItem(position);
         try {
 
-            String url=elemento.getString("url_imagen");
-            nombre.setText("Nombre: "+elemento.getString("nombre"));
-            descripcion.setText("Descripción: "+elemento.getString("descripcion"));
+            String url=elemento.getString("imagen");
+
+            cine.setText("Cine: "+elemento.getString("nombrecine"));
+            pelicula.setText(elemento.getString("nombrepelicula"));
+            fecha.setText("Fecha: "+elemento.getString("fecha"));
+            hora.setText("hora: "+elemento.getString("hora"));
+
 
             //int img= Integer.parseInt(imagen);
            // String url = "https://www.kiva.org/img/512/"+img+".jpg";

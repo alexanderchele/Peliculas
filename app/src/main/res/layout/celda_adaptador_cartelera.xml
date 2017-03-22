@@ -20,7 +20,7 @@
                     android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imagen"
+                    android:id="@+id/imagenPeliculaCartelera"
                     android:textSize="14sp"
                     android:textAlignment="center"
                     android:layout_weight="1" />
@@ -41,7 +41,7 @@
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/nombre"
+                        android:id="@+id/nombrePeliculaCartelera"
                         android:textSize="18sp"
                         android:textAlignment="center"
                         android:textColor="@android:color/holo_blue_dark" />
@@ -50,19 +50,18 @@
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/descripcion"
+                        android:id="@+id/cine"
                         android:textSize="14sp"
 
                         android:textStyle="normal|bold"
                         android:textColor="@color/colorPrimary"  />
 
-/// para los demás
                     <TextView
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/status"
-                        android:onClick="verTrailer"
+                        android:onClick="sala"
                         android:textSize="12sp"
                         android:textStyle="normal|italic"
                         />
@@ -71,7 +70,7 @@
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/dir"
+                        android:id="@+id/fecha"
                         android:textSize="12sp"
                         android:textStyle="normal|italic"
                         />
@@ -80,22 +79,10 @@
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/sector"
+                        android:id="@+id/hora"
                         android:textSize="12sp"
                         android:textStyle="normal|italic"
                         />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/posted_date"
-                        android:textSize="12sp"
-                        android:textStyle="normal|italic"
-                        />
-
-
-
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
