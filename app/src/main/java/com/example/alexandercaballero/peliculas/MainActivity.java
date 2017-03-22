@@ -1,6 +1,8 @@
 package com.example.alexandercaballero.peliculas;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -62,7 +65,14 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+public void verTrailer(View view){
+    TextView trailer=(TextView)findViewById(R.id.status);
+    String u;
+    u=(String)trailer.getText();
 
+    Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse(u));
+    startActivity(intent);
+}
 
     @Override
     public void onBackPressed() {
@@ -115,9 +125,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_salas) {
 
         } else if (id == R.id.nav_elenco) {
-           // String url="http://api.kivaws.org/v1/loans/newest.json";
-            String url="http://moviemaniapeliculas.esy.es/obtener_alumnos.php";
-            getPeliculas(url);
+         
 
         } else if (id == R.id.nav_chino) {
 
@@ -221,8 +229,6 @@ public class MainActivity extends AppCompatActivity
                     public void onErrorResponse(VolleyError error) {
                         //Nota: ponerse a llorar
                         Logger.getAnonymousLogger().log(Level.SEVERE,"Error Fataliti");
-
-
                     }
                 }
         );
@@ -271,4 +277,51 @@ public class MainActivity extends AppCompatActivity
         );
         MySingleton.getInstance(mContext).addToRequestQueue(jor);
     }
+
+
+    ///////// Obteniendo personajer
+    private void getActoresPeliculas(String url) {
+        final Context context=this;
+        JsonObjectRequest jor=new JsonObjectRequest(
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Logger.getAnonymousLogger().log(Level.INFO,response.toString());
+                        try {
+                            JSONArray loans=response.getJSONArray("actorpelicula");
+
+                            ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
+                            for(int i=0;i<loans.length();i++)
+                            {
+                                dataSourse.add(loans.getJSONObject(i));
+
+                            }
+                            CeldaAdaptadorActoresPeliculas adapter=new CeldaAdaptadorActoresPeliculas(context,0,dataSourse);
+                            ((ListView)findViewById(R.id.lista1)).setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Nota: ponerse a llorar
+                        Logger.getAnonymousLogger().log(Level.SEVERE,"Error Fataliti");
+
+
+                    }
+                }
+        );
+        MySingleton.getInstance(mContext).addToRequestQueue(jor);
+    }
 }
+
+
