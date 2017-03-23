@@ -40,16 +40,19 @@ public class CeldaAdaptador extends ArrayAdapter<JSONObject> {
 
         TextView nombre=(TextView) celda.findViewById(R.id.nombre);
         TextView descripcion=(TextView) celda.findViewById(R.id.descripcion);
-        TextView dir=(TextView) celda.findViewById(R.id.status);
+        TextView genero=(TextView) celda.findViewById(R.id.genero);
+        TextView clasificacion=(TextView) celda.findViewById(R.id.clasificasion);
 
         NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagen);
 
         JSONObject elemento=this.getItem(position);
         try {
 
-            String url=elemento.getString("url_imagen");
-            nombre.setText("Nombre: "+elemento.getString("nombre"));
-            descripcion.setText("Descripción: "+elemento.getString("descripcion"));
+            String url=elemento.getString("imagen");
+            nombre.setText(elemento.getString("nombrepelicula"));
+            descripcion.setText(elemento.getString("descripcion"));
+            genero.setText("Genero: "+elemento.getString("genero"));
+            clasificacion.setText("Clasificación: "+elemento.getString("clasificacion"));
 
             //int img= Integer.parseInt(imagen);
            // String url = "https://www.kiva.org/img/512/"+img+".jpg";

@@ -42,8 +42,8 @@ public class CeldaAdaptadorDirectores extends ArrayAdapter<JSONObject> {
         JSONObject elemento=this.getItem(position);
         try {
 
-            String url=elemento.getString("url_imagen");
-            nombre.setText("Nombre: "+elemento.getString("nombre"));
+            String url=elemento.getString("foto");
+            nombre.setText(elemento.getString("nombre"));
 
             //int img= Integer.parseInt(imagen);
            // String url = "https://www.kiva.org/img/512/"+img+".jpg";

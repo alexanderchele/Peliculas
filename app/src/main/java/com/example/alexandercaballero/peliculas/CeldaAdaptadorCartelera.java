@@ -42,6 +42,7 @@ public class CeldaAdaptadorCartelera extends ArrayAdapter<JSONObject> {
         TextView pelicula=(TextView) celda.findViewById(R.id.nombrePeliculaCartelera);
         TextView fecha=(TextView) celda.findViewById(R.id.fecha);
         TextView hora=(TextView) celda.findViewById(R.id.hora);
+        TextView sala=(TextView) celda.findViewById(R.id.sala);
 
         NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagenPeliculaCartelera);
 
@@ -50,8 +51,10 @@ public class CeldaAdaptadorCartelera extends ArrayAdapter<JSONObject> {
 
             String url=elemento.getString("imagen");
 
-            cine.setText("Cine: "+elemento.getString("nombrecine"));
+
             pelicula.setText(elemento.getString("nombrepelicula"));
+            cine.setText(elemento.getString("nombrecine"));
+            sala.setText("sala: "+elemento.getString("sala"));
             fecha.setText("Fecha: "+elemento.getString("fecha"));
             hora.setText("hora: "+elemento.getString("hora"));
 

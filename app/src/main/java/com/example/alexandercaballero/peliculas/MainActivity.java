@@ -1,8 +1,6 @@
 package com.example.alexandercaballero.peliculas;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -65,14 +62,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-public void verTrailer(View view){
-    TextView trailer=(TextView)findViewById(R.id.status);
-    String u;
-    u=(String)trailer.getText();
 
-    Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse(u));
-    startActivity(intent);
-}
 
     @Override
     public void onBackPressed() {
@@ -114,25 +104,32 @@ public void verTrailer(View view){
         int id = item.getItemId();
 
         if (id == R.id.nav_peliculas) {
-            String url="http://moviemaniapeliculas.esy.es/obtener_peliculas.php";
+            String url="http://proyectopelicula.esy.es/obtener_pelicula.php";
             getPeliculas(url);
-
+        } else if (id == R.id.nav_actores) {
+            String url="http://proyectopelicula.esy.es/obtener_actor.php";
+            getActores(url);
         } else if (id == R.id.nav_directores) {
-            String url="http://moviemaniapeliculas.esy.es/obtener_peliculas.php";
+            String url="http://proyectopelicula.esy.es/director.php";
             getDirectores(url);
-        } else if (id == R.id.nav_horarios) {
+        } else if (id == R.id.nav_cartelera) {
+            String url="http://proyectopelicula.esy.es/cartelera.php";
+            getCartelera(url);
+        } else if (id == R.id.nav_Personajes) {
+            String url="http://proyectopelicula.esy.es/actor_pelicula.php";
+            getActoresPeliculas(url);
+        } else if (id == R.id.nav_directores_peliculas) {
+            String url=" http://proyectopelicula.esy.es/pelicula_director.php";
+            getDirectoresPeliculas(url);
 
-        } else if (id == R.id.nav_salas) {
 
-        } else if (id == R.id.nav_elenco) {
-
-
-        } else if (id == R.id.nav_chino) {
+        } else if (id == R.id.nav_comentarios) {
+            String url="http://proyectopelicula.esy.es/comentario.php";
+            getComentario(url);
 
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_buscar) {
 
-        } else if (id == R.id.nav_send) {
 
         }
 
@@ -161,7 +158,7 @@ public void verTrailer(View view){
 
                         Logger.getAnonymousLogger().log(Level.INFO,response.toString());
                         try {
-                            JSONArray loans=response.getJSONArray("peliculas");
+                            JSONArray loans=response.getJSONArray("pelicula");
 
                             ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
                             for(int i=0;i<loans.length();i++)
@@ -205,7 +202,7 @@ public void verTrailer(View view){
 
                         Logger.getAnonymousLogger().log(Level.INFO,response.toString());
                         try {
-                            JSONArray loans=response.getJSONArray("peliculas");
+                            JSONArray loans=response.getJSONArray("director");
 
                             ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
                             for(int i=0;i<loans.length();i++)
@@ -246,7 +243,7 @@ public void verTrailer(View view){
 
                         Logger.getAnonymousLogger().log(Level.INFO,response.toString());
                         try {
-                            JSONArray loans=response.getJSONArray("peliculas");
+                            JSONArray loans=response.getJSONArray("actor");
 
                             ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
                             for(int i=0;i<loans.length();i++)
@@ -291,7 +288,7 @@ public void verTrailer(View view){
 
                         Logger.getAnonymousLogger().log(Level.INFO,response.toString());
                         try {
-                            JSONArray loans=response.getJSONArray("actorpelicula");
+                            JSONArray loans=response.getJSONArray("actor_pelicula");
 
                             ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
                             for(int i=0;i<loans.length();i++)
@@ -323,7 +320,7 @@ public void verTrailer(View view){
         MySingleton.getInstance(mContext).addToRequestQueue(jor);
     }
 
-    ///////// Obteniendo personajer
+    ///////// Obteniendo Directores y sus peliculas
     private void getDirectoresPeliculas(String url) {
         final Context context=this;
         JsonObjectRequest jor=new JsonObjectRequest(
@@ -335,7 +332,7 @@ public void verTrailer(View view){
 
                         Logger.getAnonymousLogger().log(Level.INFO,response.toString());
                         try {
-                            JSONArray loans=response.getJSONArray("directorpelicula");
+                            JSONArray loans=response.getJSONArray("pelicula_director");
 
                             ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
                             for(int i=0;i<loans.length();i++)
@@ -343,7 +340,7 @@ public void verTrailer(View view){
                                 dataSourse.add(loans.getJSONObject(i));
 
                             }
-                            CeldaAdaptadorActoresPeliculas adapter=new CeldaAdaptadorActoresPeliculas(context,0,dataSourse);
+                            CeldaAdaptadorDirectoresPeliculas adapter=new CeldaAdaptadorDirectoresPeliculas(context,0,dataSourse);
                             ((ListView)findViewById(R.id.lista1)).setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
@@ -412,7 +409,7 @@ public void verTrailer(View view){
     }
 
 
-    ///obteniendo cartelera
+    ///obteniendo comentario
     private void getComentario(String url) {
         final Context context=this;
         JsonObjectRequest jor=new JsonObjectRequest(
@@ -424,7 +421,7 @@ public void verTrailer(View view){
 
                         Logger.getAnonymousLogger().log(Level.INFO,response.toString());
                         try {
-                            JSONArray loans=response.getJSONArray("comentarios");
+                            JSONArray loans=response.getJSONArray("comentario");
 
                             ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
                             for(int i=0;i<loans.length();i++)

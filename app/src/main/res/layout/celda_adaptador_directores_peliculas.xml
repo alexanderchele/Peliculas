@@ -20,19 +20,22 @@
                     android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imagenPeliculaDirector"
+                    android:id="@+id/fotoDirector"
                     android:textSize="14sp"
                     android:textAlignment="center"
-                    android:layout_weight="1" />
-
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"/>
                 <com.android.volley.toolbox.NetworkImageView
                     android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/fotoDirector"
+                    android:id="@+id/imagenPeliculaDirector"
                     android:textSize="14sp"
                     android:textAlignment="center"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"/>
+
+
 
             </LinearLayout>
 

@@ -47,14 +47,21 @@ public class CeldaAdaptadorComentario extends ArrayAdapter<JSONObject> {
 
         JSONObject elemento=this.getItem(position);
         try {
+            String c,estrellas="" ;
+            int i;
 
             String url=elemento.getString("imagen");
-
+            c=elemento.getString("calificacion");
+            i= Integer.parseInt(c);
+            for (int x=1; x<=i; x++){
+                estrellas=estrellas+"★";
+            }
             usuario.setText("Usuario: "+elemento.getString("nombreusuario"));
             pelicula.setText(elemento.getString("nombrepelicula"));
-            fecha.setText("Fecha: "+elemento.getString("fechacomentario"));
+            fecha.setText("Fecha del comentario: "+elemento.getString("fecha"));
+            calificacion.setText("calificación: "+estrellas);
             comentario.setText("Comentario: "+elemento.getString("comentario"));
-            calificacion.setText("calificación: "+elemento.getInt("calificacion"));
+
 //recordar mostrar calificación con estrellas
 
             niv.setImageUrl(url,MySingleton.getInstance(MainActivity.mContext).getImageLoader());

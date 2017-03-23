@@ -4,43 +4,44 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_peliculas"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_media_video_poster"
             android:title="Películas" />
         <item
             android:id="@+id/nav_directores"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Productores" />
+            android:icon="@drawable/ic_menu_myplaces"
+            android:title="Directores" />
         <item
-            android:id="@+id/nav_horarios"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Horarios" />
+            android:id="@+id/nav_actores"
+           android:icon="@drawable/ic_star_black_48dp"
+            android:title="Actores" />
+
         <item
-            android:id="@+id/nav_salas"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Salas" />
+            android:id="@+id/nav_cartelera"
+            android:icon="@drawable/ic_dialog_map"
+            android:title="Cartelera" />
         <item
-            android:id="@+id/nav_elenco"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Elenco" />
+            android:id="@+id/nav_Personajes"
+            android:icon="@drawable/actorpeliculas"
+            android:title="Actores y sus personajes" />
+        <item
+            android:id="@+id/nav_directores_peliculas"
+            android:icon="@drawable/director"
+            android:title="Directores y sus películas" />
+        <item
+            android:id="@+id/nav_comentarios"
+            android:icon="@drawable/ic_menu_start_conversation"
+            android:title="Comentarios" />
             />
 
-        <item
-            android:id="@+id/nav_chino"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Chino" />
-        />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Búsquedas">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_buscar"
+                android:icon="@drawable/ic_menu_find"
+                android:title="Buscar Pélicula" />
+
         </menu>
     </item>
 

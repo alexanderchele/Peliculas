@@ -47,9 +47,9 @@ public class CeldaAdaptadorActores extends ArrayAdapter<JSONObject> {
         JSONObject elemento=this.getItem(position);
         try {
 
-            String url=elemento.getString("url_imagen");
-            nombre.setText("Nombre: "+elemento.getString("nombre"));
-            biografia.setText("Descripción: "+elemento.getString("biografia"));
+            String url=elemento.getString("foto");
+            nombre.setText(elemento.getString("nombreactor"));
+            biografia.setText(elemento.getString("biografia"));
             //int img= Integer.parseInt(imagen);
            // String url = "https://www.kiva.org/img/512/"+img+".jpg";
             niv.setImageUrl(url,MySingleton.getInstance(MainActivity.mContext).getImageLoader());

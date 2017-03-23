@@ -42,14 +42,14 @@ public class CeldaAdaptadorDirectoresPeliculas extends ArrayAdapter<JSONObject> 
         TextView pelicula=(TextView) celda.findViewById(R.id.nombrePeliculadirector );
 
 
-        NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagenDirector);
+        NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagenPeliculaDirector);
         NetworkImageView niv1= (NetworkImageView)celda.findViewById(R.id.fotoDirector);
         JSONObject elemento=this.getItem(position);
         try {
 
             String url=elemento.getString("imagen");
             String url1=elemento.getString("foto");
-            director.setText("Director: "+elemento.getString("nombredirector"));
+            director.setText("Director: "+elemento.getString("nombre"));
             pelicula.setText("Película: "+elemento.getString("nombrepelicula"));
 
 

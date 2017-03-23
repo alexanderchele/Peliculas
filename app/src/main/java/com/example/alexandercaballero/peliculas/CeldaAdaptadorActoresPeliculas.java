@@ -42,7 +42,7 @@ public class CeldaAdaptadorActoresPeliculas extends ArrayAdapter<JSONObject> {
         TextView pelicula=(TextView) celda.findViewById(R.id.nombrePelicula );
         TextView personaje=(TextView) celda.findViewById(R.id.personaje);
 
-        NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagenActor);
+        NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagenPelicula);
         NetworkImageView niv1= (NetworkImageView)celda.findViewById(R.id.fotoActor);
         JSONObject elemento=this.getItem(position);
         try {
@@ -51,7 +51,7 @@ public class CeldaAdaptadorActoresPeliculas extends ArrayAdapter<JSONObject> {
             String url1=elemento.getString("foto");
             actor.setText("Actor: "+elemento.getString("nombreactor"));
             pelicula.setText("Película: "+elemento.getString("nombrepelicula"));
-            personaje.setText("Descripción: "+elemento.getString("personaje"));
+            personaje.setText("Personaje: "+elemento.getString("personaje"));
 
             //int img= Integer.parseInt(imagen);
            // String url = "https://www.kiva.org/img/512/"+img+".jpg";
