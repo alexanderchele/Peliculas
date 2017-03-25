@@ -1,6 +1,7 @@
 package com.example.alexandercaballero.peliculas;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class CeldaAdaptadorCartelera extends ArrayAdapter<JSONObject> {
         super(context,resourse,items);
     }
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
         View celda = convertView;
         if (celda==null)
@@ -66,6 +67,8 @@ public class CeldaAdaptadorCartelera extends ArrayAdapter<JSONObject> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
         return celda;
     }
 }

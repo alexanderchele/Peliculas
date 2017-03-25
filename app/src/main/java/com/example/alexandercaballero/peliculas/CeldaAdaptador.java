@@ -1,6 +1,7 @@
 package com.example.alexandercaballero.peliculas;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +28,10 @@ public class CeldaAdaptador extends ArrayAdapter<JSONObject> {
         super(context,resourse,items);
     }
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
         View celda = convertView;
+
         if (celda==null)
         {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -39,10 +41,10 @@ public class CeldaAdaptador extends ArrayAdapter<JSONObject> {
 
 
         TextView nombre=(TextView) celda.findViewById(R.id.nombre);
-        TextView descripcion=(TextView) celda.findViewById(R.id.descripcion);
+      /*  TextView descripcion=(TextView) celda.findViewById(R.id.descripcion);
         TextView genero=(TextView) celda.findViewById(R.id.genero);
         TextView clasificacion=(TextView) celda.findViewById(R.id.clasificasion);
-
+*/
         NetworkImageView niv= (NetworkImageView)celda.findViewById(R.id.imagen);
 
         JSONObject elemento=this.getItem(position);
@@ -50,17 +52,26 @@ public class CeldaAdaptador extends ArrayAdapter<JSONObject> {
 
             String url=elemento.getString("imagen");
             nombre.setText(elemento.getString("nombrepelicula"));
-            descripcion.setText(elemento.getString("descripcion"));
+           /* descripcion.setText(elemento.getString("descripcion"));
             genero.setText("Genero: "+elemento.getString("genero"));
             clasificacion.setText("Clasificación: "+elemento.getString("clasificacion"));
+*/
 
-            //int img= Integer.parseInt(imagen);
-           // String url = "https://www.kiva.org/img/512/"+img+".jpg";
             niv.setImageUrl(url,MySingleton.getInstance(MainActivity.mContext).getImageLoader());
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        celda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DetalleActivity.class);
+                intent.putExtra("pelicula", getItem(position).toString());
+                getContext().startActivity(intent);
+            }
+        });
+
+
         return celda;
     }
 }

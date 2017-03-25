@@ -1,10 +1,10 @@
 package com.example.alexandercaballero.peliculas;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
 
     public static Context mContext;
     private Context context;
-
+    JSONObject kivaJason=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+      /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
+*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         mContext=this;
+       String url="http://proyectopelicula.esy.es/obtener_pelicula.php";
+     getPeliculas(url);
 
 
     }
@@ -104,32 +106,35 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_peliculas) {
-            String url="http://proyectopelicula.esy.es/obtener_pelicula.php";
+
+           String url="http://proyectopelicula.esy.es/obtener_pelicula.php";
             getPeliculas(url);
+            setTitle("Peliculas");
         } else if (id == R.id.nav_actores) {
             String url="http://proyectopelicula.esy.es/obtener_actor.php";
             getActores(url);
+            setTitle("Actores");
         } else if (id == R.id.nav_directores) {
             String url="http://proyectopelicula.esy.es/director.php";
             getDirectores(url);
+            setTitle("Directores");
         } else if (id == R.id.nav_cartelera) {
             String url="http://proyectopelicula.esy.es/cartelera.php";
             getCartelera(url);
+            setTitle("Cartelera Cinematográfica");
         } else if (id == R.id.nav_Personajes) {
             String url="http://proyectopelicula.esy.es/actor_pelicula.php";
             getActoresPeliculas(url);
+            setTitle("Personajes");
         } else if (id == R.id.nav_directores_peliculas) {
             String url=" http://proyectopelicula.esy.es/pelicula_director.php";
             getDirectoresPeliculas(url);
-
+            setTitle("Directores y sus películas");
 
         } else if (id == R.id.nav_comentarios) {
             String url="http://proyectopelicula.esy.es/comentario.php";
             getComentario(url);
-
-
-        } else if (id == R.id.nav_buscar) {
-
+            setTitle("Comentarios");
 
         }
 
@@ -158,6 +163,7 @@ public class MainActivity extends AppCompatActivity
 
                         Logger.getAnonymousLogger().log(Level.INFO,response.toString());
                         try {
+                            kivaJason=response;
                             JSONArray loans=response.getJSONArray("pelicula");
 
                             ArrayList<JSONObject> dataSourse=new ArrayList<JSONObject>();
@@ -452,6 +458,11 @@ public class MainActivity extends AppCompatActivity
         );
         MySingleton.getInstance(mContext).addToRequestQueue(jor);
     }
+    public void verTriler(View view){
+        Intent Browser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=9-3OCc5g5oE"));
+        startActivity(Browser);
+    }
+
 }
 
 

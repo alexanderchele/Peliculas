@@ -45,37 +45,10 @@
                         android:id="@+id/nombre"
                         android:textSize="18sp"
                         android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_dark" />
+                        android:textColor="@android:color/holo_blue_dark"
 
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/descripcion"
-                        android:textSize="14sp"
-
-                        android:textStyle="normal|bold"
-                         />
-
-/// para los demás
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/genero"
-                        android:onClick="verTrailer"
-                        android:textSize="12sp"
-                        android:textStyle="normal|italic"
                         />
 
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/clasificasion"
-                        android:textSize="12sp"
-                        android:textStyle="normal|italic"
-                        />
 
 
 
